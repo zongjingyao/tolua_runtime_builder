@@ -1,0 +1,40 @@
+diff --git a/macnojit53/tolua.xcodeproj/project.pbxproj b/macnojit53/tolua.xcodeproj/project.pbxproj
+index b1ff3c9..ee8350d 100644
+--- a/macnojit53/tolua.xcodeproj/project.pbxproj
++++ b/macnojit53/tolua.xcodeproj/project.pbxproj
+@@ -609,7 +609,7 @@
+ 		0F4B04DF1800959F002EA938 /* Debug */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
++				ARCHS = "$(ARCHS_STANDARD)";
+ 				COMBINE_HIDPI_IMAGES = YES;
+ 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+ 				GCC_PREFIX_HEADER = "tolua/tolua-Prefix.pch";
+@@ -625,7 +625,7 @@
+ 				ONLY_ACTIVE_ARCH = NO;
+ 				OTHER_LDFLAGS = "-all_load";
+ 				PRODUCT_NAME = tolua;
+-				VALID_ARCHS = x86_64;
++				VALID_ARCHS = "arm64 x86_64";
+ 				WRAPPER_EXTENSION = bundle;
+ 			};
+ 			name = Debug;
+@@ -633,7 +633,7 @@
+ 		0F4B04E01800959F002EA938 /* Release */ = {
+ 			isa = XCBuildConfiguration;
+ 			buildSettings = {
+-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
++				ARCHS = "$(ARCHS_STANDARD)";
+ 				COMBINE_HIDPI_IMAGES = YES;
+ 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+ 				GCC_PREFIX_HEADER = "tolua/tolua-Prefix.pch";
+@@ -649,7 +649,7 @@
+ 				ONLY_ACTIVE_ARCH = NO;
+ 				OTHER_LDFLAGS = "-all_load";
+ 				PRODUCT_NAME = tolua;
+-				VALID_ARCHS = x86_64;
++				VALID_ARCHS = "arm64 x86_64";
+ 				WRAPPER_EXTENSION = bundle;
+ 			};
+ 			name = Release;

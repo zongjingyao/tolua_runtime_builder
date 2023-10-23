@@ -1,0 +1,13 @@
+diff --git a/luasocket/inet.h b/luasocket/inet.h
+index cedf1ed..4182b3f 100644
+--- a/luasocket/inet.h
++++ b/luasocket/inet.h
+@@ -23,7 +23,7 @@
+ #endif
+ 
+ #ifdef __MINGW32__
+-#define LUASOCKET_INET_PTON
++// #define LUASOCKET_INET_PTON
+ #endif
+ 
+ #ifndef _WIN32

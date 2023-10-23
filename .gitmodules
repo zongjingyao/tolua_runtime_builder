@@ -1,0 +1,4 @@
+[submodule "tolua_runtime"]
+	path = tolua_runtime
+	url = git@github.com:topameng/tolua_runtime.git
+	branch = luac5.3

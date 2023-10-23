@@ -1,0 +1,102 @@
+name: Build tolua runtime 5.3
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-linux-x64:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Set up tool chain
+        run: |
+          sudo apt-get install -y gcc make libreadline-dev
+
+      - name: Build Linux x64
+        run: ./build_linux_x64.sh
+
+      - name: Archive Plugins
+        uses: actions/upload-artifact@v3
+        with:
+          name: Plugins
+          path: Plugins
+
+  build-android-arm64:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Set up NDK
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: r19c
+          local-cache: true
+
+      - name: Build Android arm64
+        run: ./build_android_arm64.sh
+
+      - name: Archive Plugins
+        uses: actions/upload-artifact@v3
+        with:
+          name: Plugins
+          path: Plugins
+
+  build-windows-x64:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Set up tool chain
+        shell: pwsh
+        run: |
+          Set-ExecutionPolicy RemoteSigned -scope CurrentUser
+          iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
+          scoop install make
+          scoop install gcc
+
+      - name: Apply git patch
+        run: git apply --directory tolua_runtime ./windows_patch.diff
+
+      - name: Build Windows x64
+        shell: bash
+        run: ./build_windows_x64.sh
+
+      - name: Archive Plugins
+        uses: actions/upload-artifact@v3
+        with:
+          name: Plugins
+          path: Plugins
+  
+  build-osx-universal:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Apply git patch
+        run: git apply --directory tolua_runtime ./osx_patch.diff
+
+      - name: Build OSX Universal
+        run: ./build_osx_universal.sh
+
+      - name: Archive Plugins
+        uses: actions/upload-artifact@v3
+        with:
+          name: Plugins
+          path: Plugins
